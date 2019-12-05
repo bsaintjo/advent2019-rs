@@ -1,0 +1,17 @@
+[package]
+name = "advent2019-rs"
+version = "0.1.0"
+authors = ["Brandon Saint-John <bsaintjo@ucsc.edu>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[[bin]]
+name = "day1-1"
+path = "src/bin/day1-1.rs"
+
+[[bin]]
+name = "day1-2"
+path = "src/bin/day1-2.rs"
