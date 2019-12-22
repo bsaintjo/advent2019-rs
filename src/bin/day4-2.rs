@@ -1,10 +1,14 @@
+use std::collections::HashMap;
 use std::io::stdin;
 
 fn check_num(n: usize) -> bool {
-    let mut is_adjacent = false;
+    let mut is_adjacent = HashMap::new();
     let always_increasing = (1..=6)
         .rev()
-        .map(|x| { let factor = 10usize.pow(x); (n % factor)  / (factor / 10) })
+        .map(|x| {
+            let factor = 10usize.pow(x);
+            (n % factor) / (factor / 10)
+        })
         .collect::<Vec<_>>()
         .windows(2)
         .all(|pair| {
@@ -12,14 +16,15 @@ fn check_num(n: usize) -> bool {
             let y = pair[1];
             if y >= x {
                 if y == x {
-                    is_adjacent = true;
+                    let group_size = is_adjacent.entry(x).or_insert(1);
+                    *group_size += 1;
                 }
                 true
             } else {
                 false
             }
         });
-    always_increasing && is_adjacent
+    always_increasing && (is_adjacent.values().any(|&v| v == 2))
 }
 
 fn main() {
@@ -42,10 +47,8 @@ mod tests {
 
     #[test]
     fn check_num_test() {
-        assert!(check_num(111_111));
-        assert!(check_num(111_123));
-        assert!(check_num(135_679));
-        assert!(!check_num(223_450));
-        assert!(!check_num(123_789));
+        assert!(check_num(112_233));
+        assert!(!check_num(123_444));
+        assert!(check_num(111_122));
     }
 }

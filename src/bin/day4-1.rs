@@ -4,7 +4,10 @@ fn check_num(n: usize) -> bool {
     let mut is_adjacent = false;
     let always_increasing = (1..=6)
         .rev()
-        .map(|x| { let factor = 10usize.pow(x); (n % factor)  / (factor / 10) })
+        .map(|x| {
+            let factor = 10usize.pow(x);
+            (n % factor) / (factor / 10)
+        })
         .collect::<Vec<_>>()
         .windows(2)
         .all(|pair| {
@@ -44,7 +47,7 @@ mod tests {
     fn check_num_test() {
         assert!(check_num(111_111));
         assert!(check_num(111_123));
-        assert!(check_num(135_679));
+        assert!(!check_num(135_679));
         assert!(!check_num(223_450));
         assert!(!check_num(123_789));
     }
