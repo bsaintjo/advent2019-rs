@@ -1,5 +1,5 @@
-use std::io::stdin;
 use std::collections::HashSet;
+use std::io::stdin;
 
 fn run_program(prog: &mut [usize]) {
     let mut iter = 0..prog.len();
@@ -41,8 +41,8 @@ fn main() {
     program.pop();
     let program_ops: Vec<usize> = program.split(',').map(|x| x.parse().unwrap()).collect();
     let mut tried: HashSet<(usize, usize)> = HashSet::new();
-    for i in 0 ..= 99 {
-        for j in 0 ..= 99 {
+    for i in 0..=99 {
+        for j in 0..=99 {
             if tried.contains(&(j, i)) {
                 continue;
             }
@@ -52,7 +52,12 @@ fn main() {
             program_copy[2] = j;
             run_program(&mut program_copy);
             if program_copy[0] == 19690720 {
-                println!("noun={}, verb={}, 100 * verb + noun = {}", i, j, 100 * i + j);
+                println!(
+                    "noun={}, verb={}, 100 * verb + noun = {}",
+                    i,
+                    j,
+                    100 * i + j
+                );
             }
         }
     }
