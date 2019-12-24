@@ -8,6 +8,7 @@ edition = "2018"
 
 [dependencies]
 itertools = "0.8"
+text_io = "0.1.7"
 
 [[bin]]
 name = "day1-1"
@@ -36,3 +37,11 @@ path = "src/bin/day3-2.rs"
 [[bin]]
 name = "day4-1"
 path = "src/bin/day4-1.rs"
+
+[[bin]]
+name = "day4-2"
+path = "src/bin/day4-2.rs"
+
+[[bin]]
+name = "day5-1"
+path = "src/bin/day5-1.rs"
